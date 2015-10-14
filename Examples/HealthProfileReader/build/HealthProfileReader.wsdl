@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://hp.reader/xsd" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://hp.reader/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://hp.reader/">
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://hp.reader/xsd">
+            <xs:element name="getBMI">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="personId" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createPerson">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="personId" type="xs:long"/>
+                        <xs:element minOccurs="0" name="firstname" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="lastname" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="birthdate" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="displayHealthProfile">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="personId" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateHealthProfile">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="personId" type="xs:long"/>
+                        <xs:element name="height" type="xs:double"/>
+                        <xs:element name="weight" type="xs:double"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="main">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="args" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getBMIRequest">
+        <wsdl:part name="parameters" element="ns:getBMI"/>
+    </wsdl:message>
+    <wsdl:message name="displayHealthProfileRequest">
+        <wsdl:part name="parameters" element="ns:displayHealthProfile"/>
+    </wsdl:message>
+    <wsdl:message name="updateHealthProfileRequest">
+        <wsdl:part name="parameters" element="ns:updateHealthProfile"/>
+    </wsdl:message>
+    <wsdl:message name="createPersonRequest">
+        <wsdl:part name="parameters" element="ns:createPerson"/>
+    </wsdl:message>
+    <wsdl:message name="mainRequest">
+        <wsdl:part name="parameters" element="ns:main"/>
+    </wsdl:message>
+    <wsdl:portType name="HealthProfileReaderPortType">
+        <wsdl:operation name="getBMI">
+            <wsdl:input message="tns:getBMIRequest" wsaw:Action="urn:getBMI"/>
+        </wsdl:operation>
+        <wsdl:operation name="displayHealthProfile">
+            <wsdl:input message="tns:displayHealthProfileRequest" wsaw:Action="urn:displayHealthProfile"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateHealthProfile">
+            <wsdl:input message="tns:updateHealthProfileRequest" wsaw:Action="urn:updateHealthProfile"/>
+        </wsdl:operation>
+        <wsdl:operation name="createPerson">
+            <wsdl:input message="tns:createPersonRequest" wsaw:Action="urn:createPerson"/>
+        </wsdl:operation>
+        <wsdl:operation name="main">
+            <wsdl:input message="tns:mainRequest" wsaw:Action="urn:main"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="HealthProfileReaderSoap11Binding" type="tns:HealthProfileReaderPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="getBMI">
+            <soap:operation soapAction="urn:getBMI" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="displayHealthProfile">
+            <soap:operation soapAction="urn:displayHealthProfile" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="updateHealthProfile">
+            <soap:operation soapAction="urn:updateHealthProfile" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="createPerson">
+            <soap:operation soapAction="urn:createPerson" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="main">
+            <soap:operation soapAction="urn:main" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="HealthProfileReaderSoap12Binding" type="tns:HealthProfileReaderPortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="getBMI">
+            <soap12:operation soapAction="urn:getBMI" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="displayHealthProfile">
+            <soap12:operation soapAction="urn:displayHealthProfile" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="updateHealthProfile">
+            <soap12:operation soapAction="urn:updateHealthProfile" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="createPerson">
+            <soap12:operation soapAction="urn:createPerson" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="main">
+            <soap12:operation soapAction="urn:main" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="HealthProfileReaderHttpBinding" type="tns:HealthProfileReaderPortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="getBMI">
+            <http:operation location="getBMI"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="displayHealthProfile">
+            <http:operation location="displayHealthProfile"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="updateHealthProfile">
+            <http:operation location="updateHealthProfile"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="createPerson">
+            <http:operation location="createPerson"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="main">
+            <http:operation location="main"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="HealthProfileReader">
+        <wsdl:port name="HealthProfileReaderHttpSoap11Endpoint" binding="tns:HealthProfileReaderSoap11Binding">
+            <soap:address location="http://localhost:8080/axis2/services/HealthProfileReader"/>
+        </wsdl:port>
+        <wsdl:port name="HealthProfileReaderHttpSoap12Endpoint" binding="tns:HealthProfileReaderSoap12Binding">
+            <soap12:address location="http://localhost:8080/axis2/services/HealthProfileReader"/>
+        </wsdl:port>
+        <wsdl:port name="HealthProfileReaderHttpEndpoint" binding="tns:HealthProfileReaderHttpBinding">
+            <http:address location="http://localhost:8080/axis2/services/HealthProfileReader"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
